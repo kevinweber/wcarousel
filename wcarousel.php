@@ -1,13 +1,13 @@
 <?php
 /*
- * Plugin Name: Custom OwlCarousel
+ * Plugin Name: wCarousel
  * Plugin URI: http://kevinw.de/
- * Description: Custom OwlCarousel solution for WordPress with kevinw.de in mind (http://owlgraphic.com/owlcarousel/).
+ * Description: wCarousel brings OwlCarousel to WordPress. Work in progress.
  * Author: Kevin Weber
  * Version: 0.1
  * Author URI: http://kevinw.de/
  * License: GPL v3
- * Text Domain: kevinw-owlcarousel
+ * Text Domain: wcarousel
 */
 if ( ! function_exists( 'add_filter' ) ) {
 	header( 'Status: 403 Forbidden' );
