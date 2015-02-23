@@ -55,8 +55,10 @@ if ( ! class_exists( 'Kevinw_OwlC_Frontend_Setup' ) ) {
 				    items : 3,
 				    lazyLoad : true,
 				  });
-				});
-				$(document).ready(function() {
+				  $("#owl-stripe").owlCarousel({
+				    items : 4,
+				    lazyLoad : true,
+				  });
 				  $("#owl-quote").owlCarousel({
 				      slideSpeed : 300,
 				      paginationSpeed : 400,
