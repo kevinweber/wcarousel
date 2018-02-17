@@ -24,11 +24,11 @@ if ( ! class_exists( 'Kevinw_OwlC_Frontend_Setup' ) ) {
 		 */
 		function register_scripts() {
 			$id = get_the_ID();
-			// Only continue if current page is home or the carousel is enabled manually
-			if ( !is_home() && ( get_post_meta( $id, 'kevinw_check_owlc', true ) != 'on' ) ) return;
+			// Only continue if carousel was enabled manually
+			if ( get_post_meta( $id, 'kevinw_check_owlc', true ) != 'on' ) return;
 
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jquery-kevinw-owlc', plugins_url( 'assets/owl.carousel.min.js', KEVINW_OWLC_FILE ), array( 'jquery' ), true );
+			wp_enqueue_script( 'jquery', false, array(), false, true );
+			wp_enqueue_script( 'jquery-kevinw-owlc', plugins_url( 'assets/owl.carousel.min.js', KEVINW_OWLC_FILE ), array( 'jquery' ), false, true );
 
 			$this->register_scripts_css();
 		}
@@ -44,32 +44,34 @@ if ( ! class_exists( 'Kevinw_OwlC_Frontend_Setup' ) ) {
 		 * @TODO: Add backend options page so that these setting can be set without the need of hard-coding
 		 */
 		function owlcarousel_init() {
-			$id = get_the_ID();
-			if ( !is_home() && ( get_post_meta( $id, 'kevinw_check_owlc', true ) != 'on' ) ) return;
+            static $owlcarousel_init_called = false;
+            if (!$owlcarousel_init_called) {
+              $owlcarousel_init_called = true;
 
-			?>
-			<script>
-			(function ( $ ) {
-				$(document).ready(function() {
-				  $("#owl-home").owlCarousel({
-				    items : 3,
-				    lazyLoad : true,
-				  });
-				  $("#owl-stripe").owlCarousel({
-				    items : 4,
-				    lazyLoad : true,
-				  });
-				  $("#owl-quote").owlCarousel({
-				      slideSpeed : 300,
-				      paginationSpeed : 400,
-				      singleItem: true,
-				  });
-				});
-			})(jQuery);
-			</script>
-		<?php }
+              $id = get_the_ID();
+              if ( get_post_meta( $id, 'kevinw_check_owlc', true ) != 'on' ) return;
+
+              ?>
+              <script>
+              (function ( $ ) {
+                  $(document).ready(function() {
+                    $("#owl-stripe").owlCarousel({
+                      items : 4,
+                      lazyLoad : true
+                    });
+                    
+                    $("#owl-quote").owlCarousel({
+                        slideSpeed : 300,
+                        paginationSpeed : 400,
+                        singleItem: true
+                    });
+                  });
+              }(jQuery));
+              </script>
+          <?php }
+          }
 
 	}
- 
+
 } /* End of class-exists wrapper */
 ?>
