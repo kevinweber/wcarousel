@@ -77,5 +77,7 @@ if ( ! class_exists( 'Kevinw_OwlC_Backend_Meta_Boxes' ) ) {
 
 	}
  
+	new Kevinw_OwlC_Backend_Meta_Boxes();
+	
 } /* End of class-exists wrapper */
 ?>
