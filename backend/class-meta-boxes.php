@@ -44,7 +44,7 @@ if ( ! class_exists( 'Kevinw_OwlC_Backend_Meta_Boxes' ) ) {
 			$values = get_post_custom( $post->ID );
 			$check = isset( $values['kevinw_check_owlc'] ) ? esc_attr( $values['kevinw_check_owlc'][0] ) : '';
 			
-			wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
+			wp_nonce_field( 'wcarousel_meta_box_nonce', 'wcarousel_meta_box_nonce' );
 
 			?>
 			<p>
@@ -60,7 +60,7 @@ if ( ! class_exists( 'Kevinw_OwlC_Backend_Meta_Boxes' ) ) {
 			if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 			
 			// If our nonce isn't there, or we can't verify it, bail
-			if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+			if( !isset( $_POST['wcarousel_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['wcarousel_meta_box_nonce'], 'wcarousel_meta_box_nonce' ) ) return;
 			
 			// Now we can actually save the data
 			$allowed = array( 
